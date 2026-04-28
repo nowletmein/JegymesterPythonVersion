@@ -1,6 +1,5 @@
-#from flask import Blueprint
 from apiflask import APIBlueprint
 
-bp = APIBlueprint('user', __name__, tag="user")
+bp = APIBlueprint('user', __name__, url_prefix='/user', tag='user')
 
 from app.blueprints.User import routes

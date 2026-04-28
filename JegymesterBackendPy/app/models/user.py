@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import List, TYPE_CHECKING
-
+from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.extensions import db
@@ -22,5 +22,11 @@ class User(db.Model):
 
     # Relationships
     roles: Mapped[List["Role"]] = relationship(secondary=user_roles, back_populates="users")
-    cart_items: Mapped[List["Screening"]] = relationship(secondary=shopping_cart)
+    shopping_cart: Mapped[List["Screening"]] = relationship(secondary=shopping_cart)
     tickets: Mapped[List["Ticket"]] = relationship(back_populates="owner")
+
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)

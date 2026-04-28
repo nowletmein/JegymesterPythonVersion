@@ -1,10 +1,35 @@
-from marshmallow import Schema, fields
-from apiflask.fields import String, Integer, List, Nested
+from marshmallow import Schema
+from apiflask.fields import String, Integer, List, Nested, DateTime, Boolean
 from apiflask.validators import Length, Email
+
+# Import the actual classes to avoid name registry conflicts
+from app.blueprints.Movie.schemas import ScreeningResponseSchema
+# If you have a Ticket schema, import it here too:
+# from app.blueprints.Ticket.schemas import TicketResponseSchema
+
+class TicketResponseSchema(Schema):
+    id = Integer()
+    screening_id = Integer()
+    phone = String()
+    email = String()
+    purchase_date = DateTime()
+    is_cancelled = Boolean()
+    is_verified = Boolean()
 
 class RoleSchema(Schema):
     id = Integer()
     name = String()
+
+class UserResponseSchema(Schema):
+    id = Integer()
+    name = String()
+    email = String()
+    phone = String()
+    token = String()
+    roles = List(Nested(RoleSchema))
+    # Use the class directly instead of a string
+    shopping_cart = List(Nested(ScreeningResponseSchema)) 
+    tickets = List(Nested(TicketResponseSchema))
 
 class UserRequestSchema(Schema):
     name = String(required=True, validate=Length(min=2, max=80))
@@ -17,13 +42,15 @@ class PayloadSchema(Schema):
     roles = List(Nested(RoleSchema))
     exp = Integer()
 
-class UserResponseSchema(Schema):
-    id = Integer()
-    name = String()
-    email = String()
-    token = String()
-    roles = List(Nested(RoleSchema))
-
 class UserLoginSchema(Schema):
     email = String(required=True, validate=Email())
     password = String(required=True)
+
+class UserEditSchema(Schema):
+    name = String()
+    email = String()
+    phone = String()
+    password = String()
+
+class RoleCreateSchema(Schema):
+    name = String(required=True)

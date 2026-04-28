@@ -18,7 +18,7 @@ class Screening(db.Model):
     price: Mapped[int] = mapped_column(default=0)
     screening_date: Mapped[datetime] = mapped_column(DateTime)
     
-    # Foreign Keys - These use the lowercase TABLE names
+    
     movie_id: Mapped[int] = mapped_column(ForeignKey("movies.id"))
     room_id: Mapped[int] = mapped_column(ForeignKey("rooms.id"))
 
