@@ -1,0 +1,7 @@
+to try out endpoints with swagger (/swagger)
+test user:
+email: test@gmail.com
+pass: testtesttest
+or 
+Token for Auth
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlcyI6W3siaWQiOjEsIm5hbWUiOiJVc2VyIn0seyJpZCI6MiwibmFtZSI6IkFkbWluIn1dLCJleHAiOjE3NzczODcyNDl9.qJ1pj8fVZAPLi5LvQnZPaeNuJllNHPGia6JJaNpN0oQ
