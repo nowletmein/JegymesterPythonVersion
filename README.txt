@@ -1,3 +1,5 @@
+This project is the backend for Jegymester School project implemented in python
+
 to try out endpoints with swagger (/swagger)
 test user:
 email: test@gmail.com
